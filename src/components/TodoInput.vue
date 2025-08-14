@@ -12,16 +12,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-// Emits definition
 const emit = defineEmits<{
   (event: "add-task", text: string): void;
 }>();
 
-const taskText = ref<string>("");
+const taskText = ref("");
 
-function submitTask(): void {
+function submitTask() {
   if (taskText.value.trim() !== "") {
-    emit("add-task", taskText.value);
+    emit("add-task", taskText.value.trim());
     taskText.value = "";
   }
 }

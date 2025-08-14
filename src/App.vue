@@ -1,6 +1,6 @@
 <template>
   <div class="todo-app">
-    <h1>Vue ToDo App</h1>
+    <h1>Vue ToDo App </h1>
     <TodoInput @add-task="addTask" />
     <TodoList
       :tasks="tasks"
@@ -11,26 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import TodoInput from "./components/TodoInput.vue";
 import TodoList from "./components/TodoList.vue";
+import { useTodos } from "./composables/useTodos";
 
-interface Task {
-  text: string;
-  done: boolean;
-}
-
-const tasks = ref<Task[]>([]);
-
-function addTask(text: string): void {
-  tasks.value.push({ text, done: false });
-}
-
-function toggleTask(index: number): void {
-  tasks.value[index].done = !tasks.value[index].done;
-}
-
-function deleteTask(index: number): void {
-  tasks.value.splice(index, 1);
-}
+const { tasks, addTask, toggleTask, deleteTask } = useTodos();
 </script>
